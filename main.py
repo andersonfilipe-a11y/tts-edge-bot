@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import FileResponse
 import edge_tts
-import asyncio
 import tempfile
 import os
 import uuid
@@ -11,7 +10,7 @@ app = FastAPI()
 VOICE = "pt-BR-AntonioNeural"
 
 async def gerar_audio(texto: str, caminho_saida: str):
-    communicate = edge_tts.Communicate(texto=texto, voice=VOICE)
+    communicate = edge_tts.Communicate(text=texto, voice=VOICE)
     await communicate.save(caminho_saida)
 
 @app.get("/")
